@@ -1,0 +1,155 @@
+/* https://github.com/getomni/omni */
+
+:root {
+  --omni_Background: #191622;
+  --omni_CurrentLine: #44475a;
+  --omni_Selection: #41414d;
+  --omni_Foreground: #e1e1e6;
+  --omni_Comment: #483c67;
+  --omni_Cyan: #78d1e1;
+  --omni_Green: #67e480;
+  --omni_Orange: #e89e64;
+  --omni_Pink: #ff79c6;
+  --omni_Purple: #988bc7;
+  --omni_Red: #e96379;
+  --omni_Yellow: #e7de79;
+}
+
+/* ctrl+f dialog */
+.code-container .CodeMirror-dialog.CodeMirror-dialog-top {
+  background-color: var(--omni_Foreground);
+}
+
+/* cursor */
+.code-container .CodeMirror-cursors .CodeMirror-cursor {
+  border-color: var(--omni_Foreground);
+}
+
+/* code panel */
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-default,
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-snc,
+.code-container[role="editor-container"] .CodeMirror.cm-s-default,
+.code-container[role="editor-container"] .CodeMirror.cm-s-snc {
+  background-color: var(--omni_Background) !important;
+}
+
+.code-container .CodeMirror .CodeMirror-line {
+  color: var(--omni_Foreground);
+  /* font-size: 14px; */
+}
+
+/* tag separators in html <, >, / */
+.code-container .cm-s-default .cm-tag.cm-bracket {
+  color: var(--omni_Foreground);
+}
+
+/* tag names (div, span, img ...) */
+.code-container .cm-s-default .cm-tag {
+  color: var(--omni_Pink);
+}
+
+/* html attributes (class, title, id..)*/
+.code-container .cm-s-default .cm-attribute {
+  color: var(--omni_Green);
+}
+
+/* strings */
+.code-container .cm-s-default .cm-string {
+  color: var(--omni_Yellow);
+}
+
+/* comments */
+.code-container .cm-s-default .cm-comment {
+  color: var(--omni_Comment);
+}
+
+/* SERVER SCRIPT */
+/* if, var, return */
+.code-container .cm-s-snc span.cm-keyword {
+  color: var(--omni_Pink);
+}
+
+/* variables */
+.code-container .cm-s-snc span.cm-variable,
+.code-container .cm-s-snc span.cm-variable-2,
+.code-container .cm-s-snc span.cm-def,
+.code-container .cm-s-snc span.cm-property {
+  color: var(--omni_Foreground);
+}
+
+.code-container .cm-s-snc span.cm-property {
+  color: var(--omni_Green);
+}
+
+.code-container .cm-s-snc span.cm-comment {
+  color: var(--omni_Comment);
+}
+
+/* string */
+.code-container .cm-s-snc span.cm-string {
+  color: var(--omni_Yellow);
+}
+
+/* operator (=, + ) */
+.code-container .cm-s-snc span.cm-operator {
+  color: var(--omni_Pink);
+}
+
+/* atom (true, + ) */
+.code-container .cm-s-snc span.cm-atom,
+.code-container .cm-s-snc span.cm-number {
+  color: var(--omni_Purple);
+}
+
+/* CSS */
+
+/* css selectors .class and #id */
+.code-container span.cm-qualifier,
+.code-container span.cm-builtin {
+  color: var(--omni_Green);
+}
+
+/* css variables like --varName: 10px */
+.code-container .cm-s-default .cm-variable-2 {
+  color: var(--omni_Foreground);
+}
+
+/* css pseudo-classes */
+.code-container .cm-s-default .cm-variable-3 {
+  color: var(--omni_Green);
+}
+
+/* 
+  property is the css props (position, display...) 
+  meta showed like (-webkit)
+*/
+.code-container .cm-s-default span.cm-property,
+.code-container .cm-s-default span.cm-meta {
+  color: var(--omni_Cyan);
+}
+
+.code-container .cm-s-default span.cm-atom,
+.code-container .cm-s-default span.cm-number {
+  color: var(--omni_Purple);
+}
+
+.code-container .cm-s-default .cm-keyword {
+  color: var(--omni_Purple);
+}
+
+/* at-rules like @media, @keyframes  */
+.code-container .cm-s-default .cm-def {
+  color: var(--omni_Pink);
+}
+
+/* css functions like var(), calc(), etc.. */
+.code-container .cm-s-default .cm-variable.cm-callee {
+  color: var(--omni_Cyan);
+}
+
+.code-container .cm-s-default .cm-string-2,
+.code-container .cm-s-snc .cm-string-2 {
+  color: var(--omni_Yellow);
+}

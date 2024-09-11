@@ -1,0 +1,15 @@
+{
+  "short_name": "Widget Editor Themes",
+  "name": "Widget Editor Themes",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Widget Editor Themes"
+  },
+  "background": {
+    "service_worker": "/background/service_worker.js"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "icons": {},
+  "version": "1.0"
+}

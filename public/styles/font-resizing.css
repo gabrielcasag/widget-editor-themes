@@ -1,0 +1,16 @@
+:root {
+  /* default sizing of CodeMirror */
+  --font-size: 12px;
+  --line-height: 16px;
+}
+
+/* 
+  font sizing feature
+  the popup.js dynamically sets the variables bellow
+*/
+.code-container .CodeMirror,
+.code-container .CodeMirror div,
+.code-container textarea {
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}

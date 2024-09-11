@@ -1,0 +1,157 @@
+/* https://github.com/sdras/night-owl-vscode-theme/issues/70 */
+
+:root {
+  --night_owl__Background: #011627;
+  --night_owl__Foreground: #d6deeb;
+  --night_owl__CurrentLine: #01111d;
+  --night_owl__Selection: #1d3b53;
+  --night_owl__Comment: #637777;
+  --night_owl__Cyan: #21c7a8;
+  --night_owl__Green: #22da6e;
+  --night_owl__Orange: #f78c6c;
+  --night_owl__Pink: #c792ea;
+  --night_owl__Purple: #82aaff;
+  --night_owl__Red: #ef5350;
+  --night_owl__Yellow: #addb67;
+  //blue #82aaff
+  //magenta #c792ea
+}
+
+/* ctrl+f dialog */
+.code-container .CodeMirror-dialog.CodeMirror-dialog-top {
+  background-color: var(--night_owl__Foreground);
+}
+
+/* cursor */
+.code-container .CodeMirror-cursors .CodeMirror-cursor {
+  border-color: var(--night_owl__Foreground);
+}
+
+/* code panel */
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-default,
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-snc,
+.code-container[role="editor-container"] .CodeMirror.cm-s-default,
+.code-container[role="editor-container"] .CodeMirror.cm-s-snc {
+  background-color: var(--night_owl__Background) !important;
+}
+
+.code-container .CodeMirror .CodeMirror-line {
+  color: var(--night_owl__Foreground);
+  /* font-size: 14px; */
+}
+
+/* tag separators in html <, >, / */
+.code-container .cm-s-default .cm-tag.cm-bracket {
+  color: var(--night_owl__Foreground);
+}
+
+/* tag names (div, span, img ...) */
+.code-container .cm-s-default .cm-tag {
+  color: var(--night_owl__Pink);
+}
+
+/* html attributes (class, title, id..)*/
+.code-container .cm-s-default .cm-attribute {
+  color: var(--night_owl__Green);
+}
+
+/* strings */
+.code-container .cm-s-default .cm-string {
+  color: var(--night_owl__Yellow);
+}
+
+/* comments */
+.code-container .cm-s-default .cm-comment {
+  color: var(--night_owl__Comment);
+}
+
+/* SERVER SCRIPT */
+/* if, var, return */
+.code-container .cm-s-snc span.cm-keyword {
+  color: var(--night_owl__Pink);
+}
+
+/* variables */
+.code-container .cm-s-snc span.cm-variable,
+.code-container .cm-s-snc span.cm-variable-2,
+.code-container .cm-s-snc span.cm-def,
+.code-container .cm-s-snc span.cm-property {
+  color: var(--night_owl__Foreground);
+}
+
+.code-container .cm-s-snc span.cm-property {
+  color: var(--night_owl__Green);
+}
+
+.code-container .cm-s-snc span.cm-comment {
+  color: var(--night_owl__Comment);
+}
+
+/* string */
+.code-container .cm-s-snc span.cm-string {
+  color: var(--night_owl__Yellow);
+}
+
+/* operator (=, + ) */
+.code-container .cm-s-snc span.cm-operator {
+  color: var(--night_owl__Pink);
+}
+
+/* atom (true, + ) */
+.code-container .cm-s-snc span.cm-atom,
+.code-container .cm-s-snc span.cm-number {
+  color: var(--night_owl__Purple);
+}
+
+/* CSS */
+
+/* css selectors .class and #id */
+.code-container span.cm-qualifier,
+.code-container span.cm-builtin {
+  color: var(--night_owl__Green);
+}
+
+/* css variables like --varName: 10px */
+.code-container .cm-s-default .cm-variable-2 {
+  color: var(--night_owl__Foreground);
+}
+
+/* css pseudo-classes */
+.code-container .cm-s-default .cm-variable-3 {
+  color: var(--night_owl__Green);
+}
+
+/* 
+  property is the css props (position, display...) 
+  meta showed like (-webkit)
+*/
+.code-container .cm-s-default span.cm-property,
+.code-container .cm-s-default span.cm-meta {
+  color: var(--night_owl__Cyan);
+}
+
+.code-container .cm-s-default span.cm-atom,
+.code-container .cm-s-default span.cm-number {
+  color: var(--night_owl__Purple);
+}
+
+.code-container .cm-s-default .cm-keyword {
+  color: var(--night_owl__Purple);
+}
+
+/* at-rules like @media, @keyframes  */
+.code-container .cm-s-default .cm-def {
+  color: var(--night_owl__Pink);
+}
+
+/* css functions like var(), calc(), etc.. */
+.code-container .cm-s-default .cm-variable.cm-callee {
+  color: var(--night_owl__Cyan);
+}
+
+.code-container .cm-s-default .cm-string-2,
+.code-container .cm-s-snc .cm-string-2 {
+  color: var(--night_owl__Yellow);
+}
