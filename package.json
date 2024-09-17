@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "watch": "nodemon --watch /src --watch /public --exec 'npm run build'"
+    "watch": "nodemon --watch /src/* --watch /public/* --ext ts,tsx,json,css,html --exec 'npm run build'"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.1",

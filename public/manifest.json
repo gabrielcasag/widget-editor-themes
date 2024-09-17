@@ -6,10 +6,7 @@
     "default_popup": "index.html",
     "default_title": "Widget Editor Themes"
   },
-  "background": {
-    "service_worker": "/background/service_worker.js"
-  },
   "permissions": ["activeTab", "scripting"],
   "icons": {},
-  "version": "1.0"
+  "version": "1.0.0"
 }
