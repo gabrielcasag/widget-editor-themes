@@ -49,7 +49,7 @@ export const App: React.FC = () => {
     <Card className="rounded-none">
       <CardHeader className="relative">
         <CardTitle className="text-lg">Widget Editor Themes</CardTitle>
-        <CardDescription>
+        <CardDescription className="max-w-[80%]">
           Choose the best theme for you, to create the best Widgets
         </CardDescription>
         <SettingsMenu />
