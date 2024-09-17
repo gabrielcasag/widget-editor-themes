@@ -20,6 +20,7 @@ import {
 } from "./components/ui/select";
 
 import { disableTheme, enableTheme } from "@/utils";
+import { SettingsMenu } from "./components/settings";
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<string>("");
@@ -46,11 +47,12 @@ export const App: React.FC = () => {
 
   return (
     <Card className="rounded-none">
-      <CardHeader>
+      <CardHeader className="relative">
         <CardTitle className="text-lg">Widget Editor Themes</CardTitle>
         <CardDescription>
           Choose the best theme for you, to create the best Widgets
         </CardDescription>
+        <SettingsMenu />
       </CardHeader>
 
       <CardContent>
