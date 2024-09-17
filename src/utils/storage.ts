@@ -1,4 +1,4 @@
-export const storageKey = "widget-editor-themes";
+export const storageKey = "wet-editor-theme";
 
 export function getStorageItem() {
   const storage = localStorage.getItem(storageKey);

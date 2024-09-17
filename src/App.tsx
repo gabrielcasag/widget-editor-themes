@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 
 import { Label } from "@/components/ui/label";
-import { Button } from "./components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -17,10 +17,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./components/ui/select";
+} from "@/components/ui/select";
+import { SettingsMenu } from "@/components/settings";
 
-import { disableTheme, enableTheme } from "@/utils";
-import { SettingsMenu } from "./components/settings";
+import { disableTheme, enableTheme } from "@/utils/extension";
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<string>("");

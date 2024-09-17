@@ -1,4 +1,4 @@
-import { getStorageItem, setStorageItem } from "./utils/storage";
+import { getStorageItem, setStorageItem } from "./storage";
 
 const getCurrentTab = async () => {
   const [tab] = await chrome.tabs.query({
