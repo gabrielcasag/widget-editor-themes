@@ -1,4 +1,4 @@
-import { getStorageItem, setStorageItem } from "./storage";
+import { getStorageItem, setStorageItem, StorageItem } from "./storage";
 
 const getCurrentTab = async () => {
   const [tab] = await chrome.tabs.query({
@@ -23,9 +23,10 @@ async function enableTheme(theme: string) {
 
   // first we need to disable the old current theme to avoid the css files stills injected
   const currentTheme = getStorageItem();
+
   if (currentTheme && currentTheme.active) {
     await chrome.scripting.removeCSS({
-      files: [`/styles/${currentTheme.theme}-theme.css`],
+      files: [`/styles/${currentTheme.name}-theme.css`],
       target: { tabId: tab.id || -1 },
     });
   }
@@ -64,7 +65,7 @@ function isOnWidgetEditorPage(url: string) {
 async function initializePopup() {
   const currentTheme = getStorageItem();
 
-  return currentTheme;
+  return currentTheme as StorageItem;
 }
 
 export {

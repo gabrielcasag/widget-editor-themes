@@ -6,7 +6,7 @@
     "default_popup": "index.html",
     "default_title": "Widget Editor Themes"
   },
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage"],
   "icons": {},
   "version": "1.0.0"
 }
