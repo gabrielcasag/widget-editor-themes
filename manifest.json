@@ -6,7 +6,13 @@
     "default_popup": "index.html",
     "default_title": "Widget Editor Themes"
   },
+  "background": {
+    "service_worker": "src/background.ts"
+  },
   "permissions": ["activeTab", "scripting", "storage"],
-  "icons": {},
+  "host_permissions": ["https://*/*"],
+  "icons": {
+    "128": "logo.png"
+  },
   "version": "1.0.0"
 }
