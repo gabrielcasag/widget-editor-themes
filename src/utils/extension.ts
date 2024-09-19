@@ -1,4 +1,4 @@
-import { getStorageItem, setStorageItem, StorageItem } from "./storage";
+import { getStorageItem, setStorageItem } from "./storage";
 
 const getCurrentTab = async () => {
   const [tab] = await chrome.tabs.query({
@@ -18,11 +18,10 @@ async function setFontSize(fontSize: number) {
   );
 }
 
-async function enableTheme(theme: string) {
-  const tab = await getCurrentTab();
-
+async function removeCurrentTheme(tab?: chrome.tabs.Tab) {
+  if (!tab) tab = await getCurrentTab();
   // first we need to disable the old current theme to avoid the css files stills injected
-  const currentTheme = getStorageItem();
+  const currentTheme = await getStorageItem();
 
   if (currentTheme && currentTheme.active) {
     await chrome.scripting.removeCSS({
@@ -30,6 +29,13 @@ async function enableTheme(theme: string) {
       target: { tabId: tab.id || -1 },
     });
   }
+}
+
+async function enableTheme(theme: string) {
+  const tab = await getCurrentTab();
+
+  // Remove the current theme if it exists
+  await removeCurrentTheme(tab);
 
   // Insert the CSS file when the user turns the extension on
   await chrome.scripting.insertCSS({
@@ -52,20 +58,18 @@ async function disableTheme(theme: string) {
   setStorageItem(theme);
 }
 
-function isOnWidgetEditorPage(url: string) {
-  const isWidgetEditorPage = url.includes("id=widget_editor");
-  // const urlWidgetIdSplit = url.includes("&sys_id=")
-  //   ? url.split("&sys_id=")
-  //   : [];
-  //let hasWidgetOpenOnEditor = urlWidgetIdSplit[1]?.length >= 32;
+async function isOnWidgetEditorPage() {
+  const tab = await getCurrentTab();
 
-  return isWidgetEditorPage;
+  return tab.url ? tab.url.includes("id=widget_editor") : false;
 }
 
 async function initializePopup() {
-  const currentTheme = getStorageItem();
-
-  return currentTheme as StorageItem;
+  const currentTheme = await getStorageItem();
+  
+  if (currentTheme && currentTheme.active) {
+    enableTheme(currentTheme.name);
+  }
 }
 
 export {
@@ -74,4 +78,5 @@ export {
   disableTheme,
   isOnWidgetEditorPage,
   initializePopup,
+  removeCurrentTheme
 };

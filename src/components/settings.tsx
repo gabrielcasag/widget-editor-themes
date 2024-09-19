@@ -31,8 +31,8 @@ export function SettingsMenu() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="absolute right-6 top-6">
-        <Button variant="outline" size="icon">
+      <DropdownMenuTrigger asChild >
+        <Button variant="ghost" size="icon">
           <Settings className="w-4 h-4" />
         </Button>
       </DropdownMenuTrigger>

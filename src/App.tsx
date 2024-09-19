@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import { LoaderCircle } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -20,11 +18,22 @@ import {
 } from "@/components/ui/select";
 import { SettingsMenu } from "@/components/settings";
 
-import { disableTheme, enableTheme } from "@/utils/extension";
+import {
+  enableTheme,
+  isOnWidgetEditorPage,
+  removeCurrentTheme,
+} from "@/utils/extension";
+import { clearStorage, StorageItem, storageKey } from "@/utils/storage";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./components/ui/tooltip";
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isOnWidgetPage, setIsOnWidgetPage] = useState<boolean>(false);
 
   function themeChange(t: string) {
     setTheme(t);
@@ -33,26 +42,48 @@ export const App: React.FC = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (theme) {
-      setIsLoading(true);
       enableTheme(theme);
     }
-    setIsLoading(false);
   }
 
   async function handleRevert(e: React.MouseEvent) {
     e.preventDefault();
-    if (theme) disableTheme(theme);
+    await removeCurrentTheme();
+    await clearStorage();
     setTheme("");
   }
 
+  useEffect(() => {
+    isOnWidgetEditorPage().then((isOnWidgetPage) => {
+      setIsOnWidgetPage(isOnWidgetPage);
+    });
+
+    chrome.storage.local.get(storageKey).then((storage) => {
+      const currentTheme: StorageItem = storage[storageKey];
+      if (currentTheme && currentTheme.active) {
+        setTheme(currentTheme.name);
+      }
+    });
+  }, []);
+
   return (
     <Card className="rounded-none">
-      <CardHeader className="relative">
-        <CardTitle className="text-lg">Widget Editor Themes</CardTitle>
-        <CardDescription className="max-w-[80%]">
+      <CardHeader>
+        <CardTitle className="text-lg flex items-center justify-between">
+          <div className="flex gap-2 items-center">
+            <img
+              src="logo.png"
+              alt="Widget Editor Themes"
+              width={32}
+              height={32}
+            />
+            <span>Widget Editor Themes</span>
+          </div>
+          <SettingsMenu />
+        </CardTitle>
+        <CardDescription className="max-w-[80%] mt-3">
           Choose the best theme for you, to create the best Widgets
         </CardDescription>
-        <SettingsMenu />
       </CardHeader>
 
       <CardContent>
@@ -71,17 +102,34 @@ export const App: React.FC = () => {
             </Select>
           </div>
 
-          <div className="flex justify-end space-x-4 mt-6">
-            <Button variant="outline" onClick={handleRevert}>
-              Revert
-            </Button>
-            <Button variant="default" type="submit" disabled={isLoading}>
-              {isLoading && (
-                <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-              )}
-              Apply
-            </Button>
-          </div>
+          {isOnWidgetPage ? (
+            <div className="flex justify-end space-x-4 mt-6">
+              <Button variant="secondary" onClick={handleRevert}>
+                Revert
+              </Button>
+              <Button variant="default" type="submit">
+                Apply
+              </Button>
+            </div>
+          ) : (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="flex justify-end space-x-4 mt-6">
+                    <Button variant="secondary" onClick={handleRevert} disabled>
+                      Revert
+                    </Button>
+                    <Button variant="default" type="submit" disabled>
+                      Apply
+                    </Button>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  You need to be on the Widget Editor page to apply a theme
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
         </form>
       </CardContent>
     </Card>
