@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="src/assets/logomarca-light.png" />
+  <source media="(prefers-color-scheme: light)" srcset="src/assets/logomarca-dark.png" />
+  <img alt="Logo" src="src/assets/logomarca-light.png" />
+</picture>
 
-Currently, two official plugins are available:
+![](https://badges.aleen42.com/src/react.svg)
+![](https://badges.aleen42.com/src/typescript.svg)
+![](https://badges.aleen42.com/src/vitejs.svg)
+![](https://img.shields.io/badge/_-CRXJS-lightblue.svg?logo=data:image/jpeg%2bxml;base64,/9j/2wCEAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDIBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIAMgAyAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AK1FFFfYHxoUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABW1oWgNqpM0ztHbqcfL1Y+1Ytei+HSh0K12YxtOfrk5rlxdWVOneJ6mU4WniK9qmyV7dyNfC+krHtNuWP8AeMjZ/nXP674bGnwm6tWZ4QfnVuSvvn0ruKq6kUGmXRkxs8ps5+lebRxNWM1rc+ixWXYadJpRSst1oeYUUUV7h8SFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUU+GGS4mSGFC8jnCqO9F7DSbdkMoroE8H6iygl7dT6Fzx+Qpf+EO1D/nrbf8AfTf4Vh9ZpfzHYsuxT+wznq6HwnqMkF+LJjmKbJA/usBn+Qo/4Q7Uf+ett/303+Fa2ieGm066+1XMqSSKCEVAcAnvk1lXr0ZU2m7nZgcDi6eIhPlaSevp1OirkfGGouJE09DhCoeT354H9a67pWHrvh8aqyTQyLHOo2ksDhh+FebhZQjUTmfQZjSrVMM4Ud3+RwVFdD/wh2o/89rb/vpv8KP+EO1D/nrbf99N/hXr/WaX8x8p/ZuK/kZz1FdCfB2ogf622PtvP+FYt5Zz2Ny0Fwmxxz6girhVhN2izGthK9FXqRaRBRRRWhzhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABWx4XGdfg+jf+gmsetjwt/wAh+D/db/0E1lX/AIcvQ68D/vMPVHoNFFFfPn3oUUUUAFFFFABRRRQAVxPjIf8AEzgP/TEfzNdtXFeM/wDkJwf9cf6muvBfxkeTnX+6P1X5nN0UUV7R8aFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFbHhb/AJD8H+63/oJrHrY8Lf8AIfg/3W/9BNZV/wCHL0OvA/7xD1R6DRRRXz596FFFFABRRRQAZxWXP4h0u3lMb3SlgcHYCwH4jisXxZqsyzCwhfam0NLjqc9vpjn8a5SvQoYJTjzSe54GOzl0ajp0le29z1O3uoLuISW8qSKe6nP/AOquP8Zf8hKD/rj/AFNYdneXFhcCe3cq4/Ij0PrT9Q1C41O58+4K7goUBRgAVtRwjpVeZPQ4sXmscThvZtWlf5FWiiiu88MKKKKACiiigAooooAKKKKACiiigAooooAK2PC3/Ifg/wB1v/QTWPWx4W/5D8H+63/oJrKv/Dl6HXgf94h6o9Booor58+9CiiigAooooA878SgjX7rd3Kkf98isqu18TaJJfYu7YbpUXayAcsPb3ri3Vo3KOpVhwVYYIr3MNVjOmrdD4fMsPOjiJOS0buvmJRWppmg3mpSAhGih6mR14/D1qPWNLOk3og8zzFZAytjHqP6VqqsHPkT1Od4WsqXtnG0TPooorQ5wooooAKKKKACiiigAooooAKKKKACiiigArY8Lf8h+D/db/wBBNY9bHhb/AJD8H+63/oJrKv8Aw5eh14H/AHiHqj0Giiivnz70KKKKACiiigAqNoYnYM8SMR3ZQakooTa2E0nuFcV4z/5CUH/XH+prta4rxn/yE4P+uP8AU114L+Mjys6/3R+q/M5uiiivaPjQooooAKKKKACiiigAooooAKKKKACiiigArX8Msq6/b7jjIYD67TWRSglSCCQRyCKiceeLj3NaFT2VSNTs7nrFFedJ4j1ZECi8Ygf3lUn8yKd/wkur/wDP3/5DX/CvLeX1O6PqFn2H/lf4f5nodFeef8JLq/8Az9/+Q1/wo/4SXV/+fv8A8hr/AIUfUKndB/b2H7P8P8z0OivPP+El1f8A5+//ACGv+FH/AAkur/8AP3/5DX/Cj6hU7oP7ew/Z/h/meh0V55/wkur/APP3/wCQ1/wo/wCEl1f/AJ+//Ia/4UfUKndB/b2H7P8AD/M9DriPGTA6rCoPIhGfzNUj4l1cjBuz+CL/AIVmyyyTytLNIzyN1Zjkmt8NhJU580mcGY5rTxFH2UE9e4yiiivQPBCiiigAooooAKKKKACiiigAooooAKKKKACiirENjd3Kb4baaRf7yoSKTaW5UYSk7RVyvRT5IpIZDHKjI46qwwaI4pJSRHG7kddqk4ourXDllfltqMop8kMsQBkidAem5SM1K1jdqqsbWYBvu/uzzRzLuNU5t2SZXoqR4Jo13PDIg9WQgUiRSSkiON3I67VJxRdWvcXLK9rajQCzAAZJ4ArR/wCEf1X/AJ8n/Mf41UWCaGRJJIZVUMOShFd23iG1Ix9nvP8Avwa5q9acGuRXuejgcJRqqXt5OLWx57RRmrUem300fmR2c7J/eEZIrpcktzz4wlJ2irlWinOjxuUdWVh1DDBFNpp3JaadmFFFFAgooooAKKKKACiiigAooooAKKKKAOr8MaHHLEL+7jDgn90jcjA7kV0V3qVlp2xbmdYt33Rgn9AOBUehsraJZlcY8oD8Rwf1zXJeLIpV1kyOG8t0XYe3A5H55rx7fWK7U2fXOawGCjOlG7dvx/qx1GqTaPNagX8sLIwyhzlvqMc1keEFjS91AQSF4ht2MRgkZPauXltLiBVea3kjVhkMykA10ngn/W3n+6n9a3nRVKhK0rnFSxjxONpuUFF/idPc2lvPNDcXAB8jJXd0BOOf0/WsLXtajtrmxns7iOVo2beiODlTjg0/xkSNKiAJwZwCPX5WrianC0OdKcn8jXNce6M5UYRs3Z36npUiW2u6TgMWhmXKnup9fqDUGg6SNJtGVyDPI2XYenYf59apeD4biPT5JJCRDI2Y1P6n/PpWrq8NzcaZNFaSbJivGO/t7ZrmneEnRUtLno0rVaccXKHvpbf1+HqchrmrNqOqpFG3+jQuAoB4Y55au9PSvKoQVuUUgghwCD9a9UPQ1vjIKChGJxZPVlWdWc93b9Ti/COnQ3M01zMofySAikZGT3rotS1qHSpYkmhmKOPvqBha5Dw/qdzp9zIIoGniYbpEUZIA7iuutNd02/xGs4Vzx5cg2kn054pYmnN1OaSugy6tS+rKnCSjPz66/iY3iTUtOvNOiMAjmmkPyvjDRgdc9/bFcnXfat4es7u3lkiiWG4AJVkGAT6Ef1rga68HODp2h07nlZvTqxr81RLXsFFFFdZ5QUUUUAFFFFABRRRQAUUUUAFFFFAG74e10aY7QXJY2znII52H1+ldfHq2nTKGW9gx/tOAfyNeZ0VyVsHCpLm2Z62Ezarh6fs2lJHoGoeI9OtIiElW4kI4SM5H4npWN4X1CCO7vprueGEy7SNxCjOT0rmKKI4SEYOKe4qmbValaNVpe70Ou8V31pdadElvcxSsJgSEcE42t/jXPaTb29zqEa3U0cUCnc5kYLken41SorWnR9nDkiznr4x166rTiumnTQ7/AFDXrKz05zaTwSSgbY0jYNg/QdhVLw7r8T2jw39yqSo2VeVgNwPv6g/0rjaKxWCp8ji+vU65ZzXdVVElZK1uh0OvQ2cmoxXlnc28nmOPMRJATuz1x71256GsTw/BYJpUKo8E0md7ngkN/MY6VJrWt21jZyokqtcspVEU5IJ7n0rhqt1JRproe1hlChTniJtLms7Loc54Z1Wy055VuVKtJjEoGQB6e1dOZdDupBOZLF3HIdiuf8a86orvq4SM5c12meFhs1nRpqm4KSW1zutY8R2lvaSRWsyy3DqQuzkL7k1wtFFa0aEaUbI5sZjamLmpT0tsgooorY4wooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooHfSwUUUUCCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9k=)
+![](https://badges.aleen42.com/src/chrome_extensions.svg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p>Apply popular themes like Dracula and Omni to the Service Portal Widgets Editor in ServiceNow for a personalized coding experience</p>
 
-## Expanding the ESLint configuration
+<picture>
+  <img alt="Demo" src="src/assets/demo.png">
+</picture>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+</div>
