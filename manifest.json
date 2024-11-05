@@ -1,7 +1,8 @@
 {
-  "short_name": "Widget Editor Themes",
-  "name": "Widget Editor Themes",
   "manifest_version": 3,
+  "name": "Widget Editor Themes",
+  "short_name": "WET",
+  "description": "Customize the ServiceNow Widget Editor by applying popular themes like Dracula and Omni for a unique coding experience.",
   "action": {
     "default_popup": "index.html",
     "default_title": "Widget Editor Themes"
@@ -10,8 +11,10 @@
     "service_worker": "src/background.ts"
   },
   "permissions": ["activeTab", "scripting", "storage"],
-  "host_permissions": ["https://*/*"],
   "icons": {
+    "16": "logo.png",
+    "32": "logo.png",
+    "48": "logo.png",
     "128": "logo.png"
   },
   "version": "1.0.0"
