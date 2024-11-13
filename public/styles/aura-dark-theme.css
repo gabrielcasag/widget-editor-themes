@@ -1,0 +1,206 @@
+/* https://github.com/daltonmenezes/aura-theme */
+
+:root {
+  --black: #15141b;
+  --white: #edecee;
+  --gray: #6d6d6d;
+  --purple: #a277ff;
+  --purple-fading: #3d375e7f;
+  --green: #61ffca;
+  --orange: #ffca85;
+  --pink: #f694ff;
+  --blue: #82e2ff;
+  --red: 	#ff6767;
+
+  --background-color: var(--black);
+  --foreground-color: var(--white);
+  --muted-color: var(--gray);
+  --selection-color: var(--purple-fading);
+  --primary-color: var(--purple);
+  --secondary-color: var(--green);
+  --tertiary-color: var(--orange);
+  --quaternary-color: var(--pink);
+  --quinary-color: var(--blue);
+  --senary-color: var(--red);
+
+  --warning-color: var(--orange);
+  --success-color: var(--green);
+  --error-color: var(--red);
+}
+
+/* ctrl+f dialog */
+.code-container .CodeMirror-dialog.CodeMirror-dialog-top {
+  background-color: var(--gray);
+  color: var(--foreground-color);
+}
+
+/* cursor */
+.code-container .CodeMirror-cursors .CodeMirror-cursor {
+  border-color: var(--purple);
+}
+
+/* code panel */
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-default,
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-snc,
+.code-container[role="editor-container"] .CodeMirror.cm-s-default,
+.code-container[role="editor-container"] .CodeMirror.cm-s-snc {
+  background-color: var(--background-color) !important;
+}
+
+/* default text */
+.code-container .CodeMirror .CodeMirror-line {
+  color: var(--foreground-color);
+  /* font-size: 14px; */
+}
+
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--selection-color);
+}
+
+/* tag separators in html <, >, / */
+.code-container .cm-s-default .cm-tag.cm-bracket {
+  color: var(--foreground-color);
+}
+
+/* tag names (div, span, img ...) */
+.code-container .cm-s-default .cm-tag {
+  color: var(--purple);
+}
+
+/* html attributes (class, title, id..)*/
+.code-container .cm-s-default .cm-attribute {
+  color: var(--pink);
+}
+
+/* strings */
+.code-container .cm-s-default .cm-string {
+  color: var(--green);
+}
+
+/* comments in html */
+.code-container .cm-s-default .cm-comment {
+  color: var(--gray);
+}
+
+/* SERVER SCRIPT */
+/* if, var, return */
+.code-container .cm-s-snc span.cm-keyword {
+  color: var(--purple);
+}
+
+/* variable declaration */
+.code-container .cm-s-snc span.cm-def {
+  color: var(--foreground-color);
+}
+
+/* global variables */
+.code-container .cm-s-snc span.cm-variable {
+  color: var(--foreground-color);
+}
+
+/* variable calling */
+.code-container .cm-s-snc span.cm-variable-2 {
+  color: var(--foreground-color);
+}
+
+/* obj properties like console.log */
+.code-container .cm-s-snc span.cm-property {
+  color: var(--pink);
+}
+
+/* comments in scripts */
+.code-container .cm-s-snc span.cm-comment {
+  color: var(--gray);
+}
+
+/* string */
+.code-container .cm-s-snc span.cm-string {
+  color: var(--green);
+}
+
+/* operator (=, + ) */
+.code-container .cm-s-snc span.cm-operator {
+  color: var(--purple);
+}
+
+/* atom (true/false) */
+.code-container .cm-s-snc span.cm-atom {
+  color: var(--green);
+}
+
+/* numbers (1,2,3) */
+.code-container .cm-s-snc span.cm-number {
+  color: var(--green);
+}
+
+/* CSS */
+
+/* class selectors */
+.code-container span.cm-qualifier {
+  color: var(--blue);
+}
+
+/* id selectors */
+.code-container span.cm-builtin {
+  color: var(--green);
+}
+
+/* css variables like --varName: 10px */
+.code-container .cm-s-default .cm-variable-2 {
+  color: var(--foreground-color);
+}
+
+/* css pseudo-classes  (:hover, :first-child) */
+.code-container .cm-s-default .cm-variable-3 {
+  color: var(--pink);
+}
+
+/* property is the css props (position, display...) */
+.code-container .cm-s-default span.cm-property {
+  color: var(--pink);
+}
+
+/* meta showed like (-webkit) */
+.code-container .cm-s-default span.cm-meta {
+  color: var(--purple);
+}
+
+/* reserved words (none,flex,block) */
+.code-container .cm-s-default span.cm-atom {
+  color: var(--foreground-color);
+}
+
+/* numbers (10px, 1rem, 50%) */
+.code-container .cm-s-default span.cm-number {
+  color: var(--green);
+}
+
+/* !important, !default */
+.code-container .cm-s-default .cm-keyword {
+  color: var(--purple);
+}
+
+/* at-rules like @media, @keyframes  */
+.code-container .cm-s-default .cm-def {
+  color: var(--purple);
+}
+
+/* css functions like var(), calc(), etc.. */
+.code-container .cm-s-default .cm-variable.cm-callee {
+  color: var(--orange);
+}
+
+/*  string literal */
+.code-container .cm-s-default .cm-string-2,
+.code-container .cm-s-snc .cm-string-2 {
+  color: var(--green);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--red);
+}

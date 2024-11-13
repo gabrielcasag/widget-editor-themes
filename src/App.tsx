@@ -96,6 +96,8 @@ export const App: React.FC = () => {
               <SelectValue placeholder="Select a theme.." />
             </SelectTrigger>
             <SelectContent position="item-aligned">
+              <SelectItem value="aura-dark">Aura Dark</SelectItem>
+              <SelectItem value="aura-dark-soft">Aura Dark Soft</SelectItem>
               <SelectItem value="dracula">Dracula</SelectItem>
               <SelectItem value="omni">Omni</SelectItem>
               <SelectItem value="omni-owl">Omni Owl</SelectItem>
