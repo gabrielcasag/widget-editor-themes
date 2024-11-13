@@ -22,16 +22,16 @@ import {
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useTheme } from "@/hooks/useTheme";
 
-export function SettingsMenu() {
+export default function SettingsMenu() {
   const { setTheme } = useTheme();
 
   const openLink = (url: string) => {
     window.open(url, "_blank");
-  }
+  };
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild >
+      <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
           <Settings className="w-4 h-4" />
         </Button>
@@ -59,15 +59,27 @@ export function SettingsMenu() {
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
-        <DropdownMenuItem onClick={() => openLink("https://github.com/gabrielcasag/widget-editor-themes")}>
+        <DropdownMenuItem
+          onClick={() =>
+            openLink("https://github.com/gabrielcasag/widget-editor-themes")
+          }
+        >
           <GitHubLogoIcon className="mr-2 h-4 w-4" />
           <span>GitHub</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => openLink("https://github.com/gabrielcasag/widget-editor-themes/issues")}>
+        <DropdownMenuItem
+          onClick={() =>
+            openLink(
+              "https://github.com/gabrielcasag/widget-editor-themes/issues"
+            )
+          }
+        >
           <Bug className="mr-2 h-4 w-4" />
           <span>Report a bug</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => openLink("https://github.com/sponsors/gabrielcasag")}>
+        <DropdownMenuItem
+          onClick={() => openLink("https://github.com/sponsors/gabrielcasag")}
+        >
           <HeartHandshake className="mr-2 h-4 w-4" />
           <span>Support</span>
         </DropdownMenuItem>

@@ -35,6 +35,12 @@
   background-color: var(--omni_owl_Background) !important;
 }
 
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--omni_owl_Selection);
+}
+
+/* default text */
 .code-container .CodeMirror .CodeMirror-line {
   color: var(--omni_owl_Foreground);
   /* font-size: 14px; */
@@ -130,11 +136,17 @@
   color: var(--omni_owl_Cyan);
 }
 
-.code-container .cm-s-default span.cm-atom,
+/* reserved words (none,flex,block) */
+.code-container .cm-s-default span.cm-atom {
+  color: var(--omni_owl_Purple);
+}
+
+/* numbers (10px, 1rem, 50%) */
 .code-container .cm-s-default span.cm-number {
   color: var(--omni_owl_Purple);
 }
 
+/* !important, !default */
 .code-container .cm-s-default .cm-keyword {
   color: var(--omni_owl_Purple);
 }
@@ -149,7 +161,14 @@
   color: var(--omni_owl_Cyan);
 }
 
+/* string literals */
 .code-container .cm-s-default .cm-string-2,
 .code-container .cm-s-snc .cm-string-2 {
   color: var(--omni_owl_Yellow);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--omni_owl_Red);
 }

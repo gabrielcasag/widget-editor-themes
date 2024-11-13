@@ -40,6 +40,11 @@
   /* font-size: 14px; */
 }
 
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--dracula_Selection);
+}
+
 /* tag separators in html <, >, / */
 .code-container .cm-s-default .cm-tag.cm-bracket {
   color: var(--dracula_Foreground);
@@ -149,7 +154,14 @@
   color: var(--dracula_Cyan);
 }
 
+/* string literals */
 .code-container .cm-s-default .cm-string-2,
 .code-container .cm-s-snc .cm-string-2 {
   color: var(--dracula_Yellow);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--dracula_Red);
 }

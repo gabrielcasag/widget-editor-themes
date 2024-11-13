@@ -35,6 +35,12 @@
   background-color: var(--omni_Background) !important;
 }
 
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--omni_Selection);
+}
+
+/* default text */
 .code-container .CodeMirror .CodeMirror-line {
   color: var(--omni_Foreground);
   /* font-size: 14px; */
@@ -149,7 +155,14 @@
   color: var(--omni_Cyan);
 }
 
+/* string literals */
 .code-container .cm-s-default .cm-string-2,
 .code-container .cm-s-snc .cm-string-2 {
   color: var(--omni_Yellow);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--omni_Red);
 }

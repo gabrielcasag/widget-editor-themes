@@ -74,3 +74,8 @@
     max-width: 34rem;
   }
 }
+
+
+.buttons__container {
+  @apply flex justify-between items-center space-x-4 mt-8 border-t-border border-t-2 pt-4;
+}

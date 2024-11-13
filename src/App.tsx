@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 
+import { clearStorage, StorageItem, storageKey } from "@/utils/storage";
+import {
+  enableTheme,
+  isOnWidgetEditorPage,
+  removeCurrentTheme,
+} from "@/utils/extension";
+
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,20 +23,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SettingsMenu } from "@/components/settings";
-
-import {
-  enableTheme,
-  isOnWidgetEditorPage,
-  removeCurrentTheme,
-} from "@/utils/extension";
-import { clearStorage, StorageItem, storageKey } from "@/utils/storage";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./components/ui/tooltip";
+} from "@/components/ui/tooltip";
+import SettingsMenu from "@/components/settings";
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<string>("");
@@ -70,7 +70,7 @@ export const App: React.FC = () => {
     <Card className="rounded-none">
       <CardHeader>
         <CardTitle className="text-lg flex items-center justify-between">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-3 items-center">
             <img
               src="logo.png"
               alt="Widget Editor Themes"
@@ -79,31 +79,34 @@ export const App: React.FC = () => {
             />
             <span>Widget Editor Themes</span>
           </div>
-          <SettingsMenu />
         </CardTitle>
-        <CardDescription className="max-w-[80%] mt-3">
+        <CardDescription className="mt-4 tracking-wide">
           Choose the best theme for you, to create the best Widgets
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="themes">Themes</Label>
-            <Select value={theme} onValueChange={(value) => themeChange(value)}>
-              <SelectTrigger id="themes">
-                <SelectValue placeholder="Select a theme.." />
-              </SelectTrigger>
-              <SelectContent position="item-aligned" align="end">
-                <SelectItem value="dracula">Dracula</SelectItem>
-                <SelectItem value="omni">Omni</SelectItem>
-                <SelectItem value="omni-owl">Omni Owl</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <Label htmlFor="themes" className="block mb-3">
+            Themes
+          </Label>
+
+          <Select value={theme} onValueChange={(value) => themeChange(value)}>
+            <SelectTrigger id="themes">
+              <SelectValue placeholder="Select a theme.." />
+            </SelectTrigger>
+            <SelectContent position="item-aligned">
+              <SelectItem value="dracula">Dracula</SelectItem>
+              <SelectItem value="omni">Omni</SelectItem>
+              <SelectItem value="omni-owl">Omni Owl</SelectItem>
+            </SelectContent>
+          </Select>
 
           {isOnWidgetPage ? (
-            <div className="flex justify-end space-x-4 mt-6">
+            <div className="buttons__container">
+              <div className="mr-auto">
+                <SettingsMenu />
+              </div>
               <Button variant="secondary" onClick={handleRevert}>
                 Revert
               </Button>
@@ -112,23 +115,27 @@ export const App: React.FC = () => {
               </Button>
             </div>
           ) : (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="flex justify-end space-x-4 mt-6">
-                    <Button variant="secondary" onClick={handleRevert} disabled>
-                      Revert
-                    </Button>
-                    <Button variant="default" type="submit" disabled>
-                      Apply
-                    </Button>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  You need to be on the Widget Editor page to apply a theme
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <div className="buttons__container">
+              <SettingsMenu />
+
+              <TooltipProvider>
+                <Tooltip delayDuration={500}>
+                  <TooltipTrigger asChild>
+                    <div className="mr-4">
+                      <Button variant="secondary" disabled>
+                        Revert
+                      </Button>
+                      <Button variant="default" disabled>
+                        Apply
+                      </Button>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    You need to be on the Widget Editor to apply a theme
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           )}
         </form>
       </CardContent>
