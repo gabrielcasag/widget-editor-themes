@@ -21,7 +21,16 @@
 </div>
 
 <h2>
-If you wanna to give a try
+Installation
 </h2>
 
-[Download](https://github.com/gabrielcasag/widget-editor-themes/releases/download/0.0.1/widget-editor-themes-0.0.1-pre.zip) as zip, extract, [load unpacked](https://github.com/web-scrobbler/web-scrobbler/wiki/Install-an-unpacked-extension) on your browser and welcome to the dark side 🧛
+[Download from Chrome Web Store](https://chromewebstore.google.com/detail/widget-editor-themes/icipjjacemcdeggkobichmflmnfjbhej)
+
+<h2>
+Themes
+</h2>
+
+- [Aura Theme](https://github.com/daltonmenezes/aura-theme)
+- [Dracula](https://github.com/dracula/dracula-theme)
+- [Omni](https://github.com/getomni/omni)
+- [Omni Owl](https://github.com/guilhermerodz/omni-owl)
