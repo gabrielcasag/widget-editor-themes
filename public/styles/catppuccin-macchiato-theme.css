@@ -1,0 +1,199 @@
+/* https://catppuccin.com/palette */
+
+:root {
+  --cat-macchiato-Rosewater: hsl(10deg, 58%, 90%);
+  --cat-macchiato-Flamingo: hsl(0deg, 58%, 86%);
+  --cat-macchiato-Pink: hsl(316deg, 74%, 85%);
+  --cat-macchiato-Mauve: hsl(267deg, 83%, 80%);
+  --cat-macchiato-Red: hsl(351deg, 74%, 73%);
+  --cat-macchiato-Maroon: hsl(355deg, 71%, 77%);
+  --cat-macchiato-Peach: hsl(21deg, 86%, 73%);
+  --cat-macchiato-Yellow: hsl(40deg, 70%, 78%);
+  --cat-macchiato-Green: hsl(105deg, 48%, 72%);
+  --cat-macchiato-Teal: hsl(171deg, 47%, 69%);
+  --cat-macchiato-Sky: hsl(189deg, 59%, 73%);
+  --cat-macchiato-Sapphire: hsl(199deg, 66%, 69%);
+  --cat-macchiato-Blue: hsl(220deg, 83%, 75%);
+  --cat-macchiato-Lavender: hsl(234deg, 82%, 85%);
+  --cat-macchiato-Text: hsl(227deg, 68%, 88%);
+  --cat-macchiato-Subtext-1: hsl(228deg, 39%, 80%);
+  --cat-macchiato-Subtext-0: hsl(227deg, 27%, 72%);
+  --cat-macchiato-Overlay-2: hsl(228deg, 20%, 65%);
+  --cat-macchiato-Overlay-1: hsl(228deg, 15%, 57%);
+  --cat-macchiato-Overlay-0: hsl(230deg, 12%, 49%);
+  --cat-macchiato-Surface-2: hsl(230deg, 14%, 41%);
+  --cat-macchiato-Surface-1: hsl(231deg, 16%, 34%);
+  --cat-macchiato-Surface-0: hsl(230deg, 19%, 26%);
+  --cat-macchiato-Base: hsl(232deg, 23%, 18%);
+  --cat-macchiato-Mantle: hsl(233deg, 23%, 15%);
+  --cat-macchiato-Crust: hsl(236deg, 23%, 12%);
+}
+
+/* ctrl+f dialog */
+.code-container .CodeMirror-dialog.CodeMirror-dialog-top {
+  background-color: var(--cat-macchiato-Overlay-0);
+}
+
+/* cursor */
+.code-container .CodeMirror-cursors .CodeMirror-cursor {
+  border-color: var(--cat-macchiato-Rosewater);
+}
+
+/* code panel */
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-default,
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-snc,
+.code-container[role="editor-container"] .CodeMirror.cm-s-default,
+.code-container[role="editor-container"] .CodeMirror.cm-s-snc {
+  background-color: var(--cat-macchiato-Base) !important;
+}
+
+.code-container .CodeMirror .CodeMirror-line {
+  color: var(--cat-macchiato-Text);
+  /* font-size: 14px; */
+}
+
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--cat-macchiato-Overlay-2);
+}
+
+/* tag separators in html <, >, / */
+.code-container .cm-s-default .cm-tag.cm-bracket {
+  color: var(--cat-macchiato-Teal);
+}
+
+/* tag names (div, span, img ...) */
+.code-container .cm-s-default .cm-tag {
+  color: var(--cat-macchiato-Blue);
+}
+
+/* html attributes (class, title, id..)*/
+.code-container .cm-s-default .cm-attribute {
+  color: var(--cat-macchiato-Yellow);
+}
+
+/* strings */
+.code-container .cm-s-default .cm-string {
+  color: var(--cat-macchiato-Green);
+}
+
+/* comments */
+.code-container .cm-s-default .cm-comment {
+  color: var(--cat-macchiato-Overlay-2);
+}
+
+/* SERVER SCRIPT */
+/* if, var, return */
+.code-container .cm-s-snc span.cm-keyword {
+  color: var(--cat-macchiato-Mauve);
+}
+
+/* variable declaration */
+.code-container .cm-s-snc span.cm-def {
+  color: var(--cat-macchiato-Text);
+}
+
+/* global variables */
+.code-container .cm-s-snc span.cm-variable {
+  color: var(--cat-macchiato-Text);
+}
+
+/* variable calling */
+.code-container .cm-s-snc span.cm-variable-2 {
+  color: var(--cat-macchiato-Text);
+}
+
+/* obj properties like console.log */
+.code-container .cm-s-snc span.cm-property {
+  color: var(--cat-macchiato-Blue);
+}
+
+.code-container .cm-s-snc span.cm-comment {
+  color: var(--cat-macchiato-Overlay-2);
+}
+
+/* string */
+.code-container .cm-s-snc span.cm-string {
+  color: var(--cat-macchiato-Green);
+}
+
+/* operator (=, + ) */
+.code-container .cm-s-snc span.cm-operator {
+  color: var(--cat-macchiato-Teal);
+}
+
+/* atom (true/false) */
+.code-container .cm-s-snc span.cm-atom {
+  color: var(--cat-macchiato-Peach);
+}
+
+/* numbers (1,2,3) */
+.code-container .cm-s-snc span.cm-number {
+  color: var(--cat-macchiato-Peach);
+}
+
+/* CSS */
+
+/* css selectors .class and #id */
+.code-container span.cm-qualifier,
+.code-container span.cm-builtin {
+  color: var(--cat-macchiato-Yellow);
+}
+
+/* css variables like --varName: 10px */
+.code-container .cm-s-default .cm-variable-2 {
+  color: var(--cat-macchiato-Blue);
+}
+
+/* css pseudo-classes */
+.code-container .cm-s-default .cm-variable-3 {
+  color: var(--cat-macchiato-Teal);
+}
+
+/* 
+  property is the css props (position, display...) 
+  meta showed like (-webkit)
+*/
+.code-container .cm-s-default span.cm-property,
+.code-container .cm-s-default span.cm-meta {
+  color: var(--cat-macchiato-Blue);
+}
+
+/* reserved words (none,flex,block) */
+.code-container .cm-s-default span.cm-atom {
+  color: var(--cat-macchiato-Text);
+}
+
+/* numbers (10px, 1rem, 50%) */
+.code-container .cm-s-default span.cm-number {
+  color: var(--cat-macchiato-Peach);
+}
+
+/* !important, !default */
+.code-container .cm-s-default .cm-keyword {
+  color: var(--cat-macchiato-Mauve);
+}
+
+/* at-rules like @media, @keyframes  */
+.code-container .cm-s-default .cm-def {
+  color: var(--cat-macchiato-Mauve);
+}
+
+/* css functions like var(), calc(), etc.. */
+.code-container .cm-s-default .cm-variable.cm-callee {
+  color: var(--cat-macchiato-Blue);
+}
+
+/*  */
+.code-container .cm-s-default .cm-string-2,
+.code-container .cm-s-snc .cm-string-2 {
+  color: var(--cat-macchiato-Yellow);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--cat-macchiato-Red);
+}

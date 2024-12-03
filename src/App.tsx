@@ -114,6 +114,10 @@ export const App: React.FC = () => {
             <SelectContent position="item-aligned">
               <SelectItem value="aura-dark">Aura Dark</SelectItem>
               <SelectItem value="aura-dark-soft">Aura Dark Soft</SelectItem>
+              <SelectItem value="catppuccin-frappe">Catppuccin Frappe</SelectItem>
+              <SelectItem value="catppuccin-latte">Catppuccin Latte</SelectItem>
+              <SelectItem value="catppuccin-mocha">Catppuccin Mocha</SelectItem>
+              <SelectItem value="catppuccin-macchiato">Catppuccin Macchiato</SelectItem>
               <SelectItem value="dracula">Dracula</SelectItem>
               <SelectItem value="omni">Omni</SelectItem>
               <SelectItem value="omni-owl">Omni Owl</SelectItem>

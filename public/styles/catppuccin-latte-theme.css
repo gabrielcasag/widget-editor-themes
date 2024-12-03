@@ -1,0 +1,199 @@
+/* https://catppuccin.com/palette */
+
+:root {
+  --cat-latte-Rosewater: hsl(11deg, 59%, 67%);
+  --cat-latte-Flamingo: hsl(0deg, 60%, 67%);
+  --cat-latte-Pink: hsl(316deg, 73%, 69%);
+  --cat-latte-Mauve: hsl(266deg, 85%, 58%);
+  --cat-latte-Red: hsl(347deg, 87%, 44%);
+  --cat-latte-Maroon: hsl(355deg, 76%, 59%);
+  --cat-latte-Peach: hsl(22deg, 99%, 52%);
+  --cat-latte-Yellow: hsl(35deg, 77%, 49%);
+  --cat-latte-Green: hsl(109deg, 58%, 40%);
+  --cat-latte-Teal: hsl(183deg, 74%, 35%);
+  --cat-latte-Sky: hsl(197deg, 97%, 46%);
+  --cat-latte-Sapphire: hsl(189deg, 70%, 42%);
+  --cat-latte-Blue: hsl(220deg, 91%, 54%);
+  --cat-latte-Lavender: hsl(231deg, 97%, 72%);
+  --cat-latte-Text: hsl(234deg, 16%, 35%);
+  --cat-latte-Subtext-1: hsl(233deg, 13%, 41%);
+  --cat-latte-Subtext-0: hsl(233deg, 10%, 47%);
+  --cat-latte-Overlay-2: hsl(232deg, 10%, 53%);
+  --cat-latte-Overlay-1: hsl(231deg, 10%, 59%);
+  --cat-latte-Overlay-0: hsl(228deg, 11%, 65%);
+  --cat-latte-Surface-2: hsl(227deg, 12%, 71%);
+  --cat-latte-Surface-1: hsl(225deg, 14%, 77%);
+  --cat-latte-Surface-0: hsl(223deg, 16%, 83%);
+  --cat-latte-Base: hsl(220deg, 23%, 95%);
+  --cat-latte-Mantle: hsl(220deg, 22%, 92%);
+  --cat-latte-Crust: hsl(220deg, 21%, 89%);
+}
+
+/* ctrl+f dialog */
+.code-container .CodeMirror-dialog.CodeMirror-dialog-top {
+  background-color: var(--cat-latte-Overlay-0);
+}
+
+/* cursor */
+.code-container .CodeMirror-cursors .CodeMirror-cursor {
+  border-color: var(--cat-latte-Rosewater);
+}
+
+/* code panel */
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-default,
+.code-container[role="editor-container"][data-readonly="true"]
+  .CodeMirror.cm-s-snc,
+.code-container[role="editor-container"] .CodeMirror.cm-s-default,
+.code-container[role="editor-container"] .CodeMirror.cm-s-snc {
+  background-color: var(--cat-latte-Base) !important;
+}
+
+.code-container .CodeMirror .CodeMirror-line {
+  color: var(--cat-latte-Text);
+  /* font-size: 14px; */
+}
+
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--cat-latte-Overlay-2);
+}
+
+/* tag separators in html <, >, / */
+.code-container .cm-s-default .cm-tag.cm-bracket {
+  color: var(--cat-latte-Teal);
+}
+
+/* tag names (div, span, img ...) */
+.code-container .cm-s-default .cm-tag {
+  color: var(--cat-latte-Blue);
+}
+
+/* html attributes (class, title, id..)*/
+.code-container .cm-s-default .cm-attribute {
+  color: var(--cat-latte-Yellow);
+}
+
+/* strings */
+.code-container .cm-s-default .cm-string {
+  color: var(--cat-latte-Green);
+}
+
+/* comments */
+.code-container .cm-s-default .cm-comment {
+  color: var(--cat-latte-Overlay-2);
+}
+
+/* SERVER SCRIPT */
+/* if, var, return */
+.code-container .cm-s-snc span.cm-keyword {
+  color: var(--cat-latte-Mauve);
+}
+
+/* variable declaration */
+.code-container .cm-s-snc span.cm-def {
+  color: var(--cat-latte-Text);
+}
+
+/* global variables */
+.code-container .cm-s-snc span.cm-variable {
+  color: var(--cat-latte-Text);
+}
+
+/* variable calling */
+.code-container .cm-s-snc span.cm-variable-2 {
+  color: var(--cat-latte-Text);
+}
+
+/* obj properties like console.log */
+.code-container .cm-s-snc span.cm-property {
+  color: var(--cat-latte-Blue);
+}
+
+.code-container .cm-s-snc span.cm-comment {
+  color: var(--cat-latte-Overlay-2);
+}
+
+/* string */
+.code-container .cm-s-snc span.cm-string {
+  color: var(--cat-latte-Green);
+}
+
+/* operator (=, + ) */
+.code-container .cm-s-snc span.cm-operator {
+  color: var(--cat-latte-Teal);
+}
+
+/* atom (true/false) */
+.code-container .cm-s-snc span.cm-atom {
+  color: var(--cat-latte-Peach);
+}
+
+/* numbers (1,2,3) */
+.code-container .cm-s-snc span.cm-number {
+  color: var(--cat-latte-Peach);
+}
+
+/* CSS */
+
+/* css selectors .class and #id */
+.code-container span.cm-qualifier,
+.code-container span.cm-builtin {
+  color: var(--cat-latte-Yellow);
+}
+
+/* css variables like --varName: 10px */
+.code-container .cm-s-default .cm-variable-2 {
+  color: var(--cat-latte-Blue);
+}
+
+/* css pseudo-classes */
+.code-container .cm-s-default .cm-variable-3 {
+  color: var(--cat-latte-Teal);
+}
+
+/* 
+  property is the css props (position, display...) 
+  meta showed like (-webkit)
+*/
+.code-container .cm-s-default span.cm-property,
+.code-container .cm-s-default span.cm-meta {
+  color: var(--cat-latte-Blue);
+}
+
+/* reserved words (none,flex,block) */
+.code-container .cm-s-default span.cm-atom {
+  color: var(--cat-latte-Text);
+}
+
+/* numbers (10px, 1rem, 50%) */
+.code-container .cm-s-default span.cm-number {
+  color: var(--cat-latte-Peach);
+}
+
+/* !important, !default */
+.code-container .cm-s-default .cm-keyword {
+  color: var(--cat-latte-Mauve);
+}
+
+/* at-rules like @media, @keyframes  */
+.code-container .cm-s-default .cm-def {
+  color: var(--cat-latte-Mauve);
+}
+
+/* css functions like var(), calc(), etc.. */
+.code-container .cm-s-default .cm-variable.cm-callee {
+  color: var(--cat-latte-Blue);
+}
+
+/*  */
+.code-container .cm-s-default .cm-string-2,
+.code-container .cm-s-snc .cm-string-2 {
+  color: var(--cat-latte-Yellow);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--cat-latte-Red);
+}
