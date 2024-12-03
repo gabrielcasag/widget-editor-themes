@@ -30,9 +30,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import SettingsMenu from "@/components/settings";
+import { ApplyButton } from "./components/apply-button";
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<string>("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [isOnWidgetPage, setIsOnWidgetPage] = useState<boolean>(false);
 
   function themeChange(t: string) {
@@ -41,8 +43,22 @@ export const App: React.FC = () => {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (theme) {
-      enableTheme(theme);
+    try {
+      setStatus("loading");
+
+      if (theme) {
+        enableTheme(theme);
+        setTimeout(() => {
+          setStatus("success");
+        }, 300);
+      }
+
+      setTimeout(() => {
+        setStatus("idle");
+      }, 1200);
+    } catch (error) {
+      setStatus("idle");
+      console.error("Error submitting form:", error);
     }
   }
 
@@ -112,19 +128,19 @@ export const App: React.FC = () => {
               <Button variant="secondary" onClick={handleRevert}>
                 Revert
               </Button>
-              <Button variant="default" type="submit">
-                Apply
-              </Button>
+              <ApplyButton status={status} />
             </div>
           ) : (
             <div className="buttons__container">
-              <SettingsMenu />
+              <div className="mr-auto">
+                <SettingsMenu />
+              </div>
 
               <TooltipProvider>
                 <Tooltip delayDuration={500}>
                   <TooltipTrigger asChild>
-                    <div className="mr-4">
-                      <Button variant="secondary" disabled>
+                    <div>
+                      <Button variant="secondary" disabled className="mr-4">
                         Revert
                       </Button>
                       <Button variant="default" disabled>
