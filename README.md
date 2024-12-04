@@ -34,3 +34,4 @@ Themes
 - [Dracula](https://github.com/dracula/dracula-theme)
 - [Omni](https://github.com/getomni/omni)
 - [Omni Owl](https://github.com/guilhermerodz/omni-owl)
+- [Catppuccin](https://catppuccin.com/palette)
