@@ -4,8 +4,10 @@
   --night_owl__Background: #011627;
   --night_owl__Foreground: #d6deeb;
   --night_owl__CurrentLine: #01111d;
+  --night_owl__CurrentLineNumber: #c5e4fd;
   --night_owl__Selection: #1d3b53;
   --night_owl__Comment: #637777;
+  --night_owl__Cursor: #80a4c2;
   --night_owl__Cyan: #21c7a8;
   --night_owl__Green: #22da6e;
   --night_owl__Orange: #f78c6c;
@@ -13,8 +15,10 @@
   --night_owl__Purple: #82aaff;
   --night_owl__Red: #ef5350;
   --night_owl__Yellow: #addb67;
-  //blue #82aaff
-  //magenta #c792ea
+  --night_owl__Magenta: #c792ea;
+  --night_owl__LineNumber: #4b6479;
+  --night_owl__Tags: #7fdbca;
+  --night_owl__BrightBlack: #575656;
 }
 
 /* ctrl+f dialog */
@@ -37,6 +41,12 @@
   background-color: var(--night_owl__Background) !important;
 }
 
+/* text selection */
+.code-container .CodeMirror .CodeMirror-selected {
+  background-color: var(--night_owl__Selection);
+}
+
+/* default text */
 .code-container .CodeMirror .CodeMirror-line {
   color: var(--night_owl__Foreground);
   /* font-size: 14px; */
@@ -151,7 +161,14 @@
   color: var(--night_owl__Cyan);
 }
 
+/* string literals */
 .code-container .cm-s-default .cm-string-2,
 .code-container .cm-s-snc .cm-string-2 {
   color: var(--night_owl__Yellow);
+}
+
+/* error */
+.code-container .cm-s-default .cm-error,
+.code-container .cm-s-snc .cm-error {
+  color: var(--night_owl__Red);
 }
