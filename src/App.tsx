@@ -143,8 +143,8 @@ export const App: React.FC = () => {
               <TooltipProvider>
                 <Tooltip delayDuration={500}>
                   <TooltipTrigger asChild>
-                    <div>
-                      <Button variant="secondary" disabled className="mr-4">
+                    <div className="flex gap-2">
+                      <Button variant="secondary" disabled>
                         Revert
                       </Button>
                       <Button variant="default" disabled>

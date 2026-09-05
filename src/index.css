@@ -76,5 +76,5 @@
 
 
 .buttons__container {
-  @apply flex justify-between items-center space-x-4 mt-8 border-t-border border-t-2 pt-4;
+  @apply flex justify-end items-center gap-2 mt-8 border-t-border border-t-2 pt-4;
 }
