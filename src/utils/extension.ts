@@ -1,54 +1,69 @@
-import { clearStorage, getStorageItem, setStorageItem } from "./storage";
+import {
+  clearFontSize,
+  clearStorage,
+  getFontSizeItem,
+  getStorageItem,
+  setFontSizeItem,
+  setStorageItem,
+} from "./storage";
 import { getCurrentTab, getWidgetEditorTabs, isWidgetEditorUrl } from "./tabs";
+import { clampFontSize, fontSizeCss, themeFiles } from "./styles";
 
-function themeFiles(theme: string) {
-  return [`/styles/${theme}-theme.css`];
-}
-
-async function setFontSize(fontSize: number) {
-  document.documentElement.style.setProperty("--font-size", fontSize + "px");
-
-  document.documentElement.style.setProperty(
-    "--line-height",
-    fontSize * 1.4 + "px"
-  );
-}
+type Injection = { files: string[] } | { css: string };
 
 /**
- * O tema é global: uma vez gravado, o service worker o injeta em toda aba do
- * widget editor. Trocar ou reverter precisa portanto varrer as abas abertas.
- * Mexer só na aba ativa deixaria as demais com o tema anterior ainda injetado,
- * e nelas o service worker empilharia o novo por cima na próxima ativação.
- *
- * `theme` nulo apenas remove o tema atual, sem inserir nada no lugar.
+ * Tema e tamanho de fonte são globais: uma vez gravados, o service worker os
+ * injeta em toda aba do widget editor. Trocar ou remover precisa portanto
+ * varrer as abas abertas — mexer só na ativa deixaria as demais com a folha
+ * anterior, e nelas o service worker empilharia a nova por cima na próxima
+ * ativação.
  */
-async function applyThemeToOpenTabs(theme: string | null) {
-  const currentTheme = await getStorageItem();
+async function swapCssOnOpenTabs(
+  previous: Injection | null,
+  next: Injection | null
+) {
   const tabs = await getWidgetEditorTabs();
 
   await Promise.all(
     tabs.map(async (tab) => {
       const target = { tabId: tab.id as number };
 
-      if (currentTheme && currentTheme.active) {
+      if (previous) {
         try {
-          await chrome.scripting.removeCSS({
-            files: themeFiles(currentTheme.name),
-            target,
-          });
+          await chrome.scripting.removeCSS({ ...previous, target });
         } catch {
-          // nenhum tema injetado nesta aba ainda
+          // nada injetado nesta aba ainda
         }
       }
 
-      if (!theme) return;
+      if (!next) return;
 
       try {
-        await chrome.scripting.insertCSS({ files: themeFiles(theme), target });
+        await chrome.scripting.insertCSS({ ...next, target });
       } catch (error) {
-        console.debug("Widget Editor Themes: theme injection failed", error);
+        console.debug("Widget Editor Themes: css injection failed", error);
       }
     })
+  );
+}
+
+async function applyThemeToOpenTabs(theme: string | null) {
+  const currentTheme = await getStorageItem();
+
+  await swapCssOnOpenTabs(
+    currentTheme && currentTheme.active
+      ? { files: themeFiles(currentTheme.name) }
+      : null,
+    theme ? { files: themeFiles(theme) } : null
+  );
+}
+
+async function applyFontSizeToOpenTabs(fontSize: number | null) {
+  const currentFontSize = await getFontSizeItem();
+
+  await swapCssOnOpenTabs(
+    currentFontSize !== null ? { css: fontSizeCss(currentFontSize) } : null,
+    fontSize !== null ? { css: fontSizeCss(fontSize) } : null
   );
 }
 
@@ -57,9 +72,21 @@ async function enableTheme(theme: string) {
   await setStorageItem(theme);
 }
 
+async function changeFontSize(fontSize: number) {
+  const clamped = clampFontSize(fontSize);
+
+  await applyFontSizeToOpenTabs(clamped);
+  await setFontSizeItem(clamped);
+
+  return clamped;
+}
+
+/** Desfaz tudo que a extensão injetou na página: tema e tamanho de fonte. */
 async function removeTheme() {
   await applyThemeToOpenTabs(null);
+  await applyFontSizeToOpenTabs(null);
   await clearStorage();
+  await clearFontSize();
 }
 
 async function isOnWidgetEditorPage() {
@@ -70,8 +97,8 @@ async function isOnWidgetEditorPage() {
 
 export {
   getCurrentTab,
-  setFontSize,
   enableTheme,
+  changeFontSize,
   removeTheme,
   isOnWidgetEditorPage,
 };
