@@ -1,13 +1,9 @@
-import { getStorageItem, setStorageItem } from "./storage";
+import { clearStorage, getStorageItem, setStorageItem } from "./storage";
+import { getCurrentTab, getWidgetEditorTabs, isWidgetEditorUrl } from "./tabs";
 
-const getCurrentTab = async () => {
-  const [tab] = await chrome.tabs.query({
-    active: true,
-    currentWindow: true,
-  });
-
-  return tab;
-};
+function themeFiles(theme: string) {
+  return [`/styles/${theme}-theme.css`];
+}
 
 async function setFontSize(fontSize: number) {
   document.documentElement.style.setProperty("--font-size", fontSize + "px");
@@ -18,65 +14,64 @@ async function setFontSize(fontSize: number) {
   );
 }
 
-async function removeCurrentTheme(tab?: chrome.tabs.Tab) {
-  if (!tab) tab = await getCurrentTab();
-  // first we need to disable the old current theme to avoid the css files stills injected
+/**
+ * O tema é global: uma vez gravado, o service worker o injeta em toda aba do
+ * widget editor. Trocar ou reverter precisa portanto varrer as abas abertas.
+ * Mexer só na aba ativa deixaria as demais com o tema anterior ainda injetado,
+ * e nelas o service worker empilharia o novo por cima na próxima ativação.
+ *
+ * `theme` nulo apenas remove o tema atual, sem inserir nada no lugar.
+ */
+async function applyThemeToOpenTabs(theme: string | null) {
   const currentTheme = await getStorageItem();
+  const tabs = await getWidgetEditorTabs();
 
-  if (currentTheme && currentTheme.active) {
-    await chrome.scripting.removeCSS({
-      files: [`/styles/${currentTheme.name}-theme.css`],
-      target: { tabId: tab.id || -1 },
-    });
-  }
+  await Promise.all(
+    tabs.map(async (tab) => {
+      const target = { tabId: tab.id as number };
+
+      if (currentTheme && currentTheme.active) {
+        try {
+          await chrome.scripting.removeCSS({
+            files: themeFiles(currentTheme.name),
+            target,
+          });
+        } catch {
+          // nenhum tema injetado nesta aba ainda
+        }
+      }
+
+      if (!theme) return;
+
+      try {
+        await chrome.scripting.insertCSS({ files: themeFiles(theme), target });
+      } catch (error) {
+        console.debug("Widget Editor Themes: theme injection failed", error);
+      }
+    })
+  );
 }
 
 async function enableTheme(theme: string) {
-  const tab = await getCurrentTab();
-
-  // Remove the current theme if it exists
-  await removeCurrentTheme(tab);
-
-  // Insert the CSS file when the user turns the extension on
-  await chrome.scripting.insertCSS({
-    files: [`/styles/${theme}-theme.css`],
-    target: { tabId: tab.id || -1 },
-  });
-
-  setStorageItem(theme);
+  await applyThemeToOpenTabs(theme);
+  await setStorageItem(theme);
 }
 
-async function disableTheme(theme: string) {
-  const tab = await getCurrentTab();
-
-  // Remove the CSS file when the user turns the extension off
-  chrome.scripting.removeCSS({
-    files: [`/styles/${theme}-theme.css`],
-    target: { tabId: tab.id || -1 },
-  });
-
-  setStorageItem(theme);
+async function removeTheme() {
+  await applyThemeToOpenTabs(null);
+  await clearStorage();
 }
 
 async function isOnWidgetEditorPage() {
   const tab = await getCurrentTab();
 
-  return tab.url ? tab.url.includes("id=widget_editor") : false;
-}
-
-async function initializePopup() {
-  const currentTheme = await getStorageItem();
-  
-  if (currentTheme && currentTheme.active) {
-    enableTheme(currentTheme.name);
-  }
+  return isWidgetEditorUrl(tab.url);
 }
 
 export {
+  getCurrentTab,
   setFontSize,
   enableTheme,
-  disableTheme,
+  removeTheme,
   isOnWidgetEditorPage,
-  initializePopup,
-  removeCurrentTheme
 };

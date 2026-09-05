@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import { clearStorage, StorageItem, storageKey } from "@/utils/storage";
+import { StorageItem, storageKey } from "@/utils/storage";
 import {
   enableTheme,
+  getCurrentTab,
   isOnWidgetEditorPage,
-  removeCurrentTheme,
+  removeTheme,
 } from "@/utils/extension";
+import { hasHostPermission, requestHostPermission } from "@/utils/permissions";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -36,6 +38,7 @@ export const App: React.FC = () => {
   const [theme, setTheme] = useState<string>("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [isOnWidgetPage, setIsOnWidgetPage] = useState<boolean>(false);
+  const [hasPermission, setHasPermission] = useState<boolean>(true);
 
   function themeChange(t: string) {
     setTheme(t);
@@ -64,15 +67,31 @@ export const App: React.FC = () => {
 
   async function handleRevert(e: React.MouseEvent) {
     e.preventDefault();
-    await removeCurrentTheme();
-    await clearStorage();
+    await removeTheme();
     setTheme("");
+  }
+
+  async function handleGrantAccess(e: React.MouseEvent) {
+    e.preventDefault();
+
+    const tab = await getCurrentTab();
+    const granted = await requestHostPermission(tab.url);
+
+    setHasPermission(granted);
+
+    // O background reaplica o tema em todas as abas ao receber a permissão,
+    // mas a aba atual já está aberta e o usuário espera ver o efeito agora.
+    if (granted && theme) enableTheme(theme);
   }
 
   useEffect(() => {
     isOnWidgetEditorPage().then((isOnWidgetPage) => {
       setIsOnWidgetPage(isOnWidgetPage);
     });
+
+    getCurrentTab().then((tab) =>
+      hasHostPermission(tab.url).then(setHasPermission)
+    );
 
     chrome.storage.local.get(storageKey).then((storage: Record<string, unknown>) => {
       const currentTheme: StorageItem = storage[storageKey] as StorageItem;
@@ -123,6 +142,23 @@ export const App: React.FC = () => {
               <SelectItem value="omni-owl">Omni Owl</SelectItem>
             </SelectContent>
           </Select>
+
+          {isOnWidgetPage && !hasPermission && (
+            <div className="mt-4 rounded-md border border-border bg-muted/50 p-3">
+              <p className="text-xs text-muted-foreground mb-3">
+                This instance runs on a custom domain. Allow access to it so the
+                theme is re-applied automatically on new and duplicated tabs.
+              </p>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                onClick={handleGrantAccess}
+              >
+                Allow on this site
+              </Button>
+            </div>
+          )}
 
           {isOnWidgetPage ? (
             <div className="buttons__container">
