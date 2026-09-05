@@ -4,6 +4,9 @@ import {App} from '@/App.tsx'
 
 import '@/index.css'
 import { ThemeProvider } from '@/providers/theme-provider.tsx'
+import { suppressSpuriousResize } from '@/utils/suppress-spurious-resize.ts'
+
+suppressSpuriousResize()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
