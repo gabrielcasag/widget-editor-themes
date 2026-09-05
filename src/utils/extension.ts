@@ -73,6 +73,7 @@ async function initializePopup() {
 }
 
 export {
+  getCurrentTab,
   setFontSize,
   enableTheme,
   disableTheme,

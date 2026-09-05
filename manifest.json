@@ -11,6 +11,8 @@
     "service_worker": "src/background.ts"
   },
   "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["https://*.service-now.com/*"],
+  "optional_host_permissions": ["<all_urls>"],
   "icons": {
     "16": "logo.png",
     "32": "logo.png",
