@@ -25,7 +25,7 @@ export function setLocalStorageItem(theme: string) {
 export async function getStorageItem(): Promise<StorageItem> {
   const storage = await chrome.storage.local.get(storageKey);
 
-  return storage[storageKey];
+  return storage[storageKey] as StorageItem;
 }
 
 export async function setStorageItem(theme: string) {

@@ -74,8 +74,8 @@ export const App: React.FC = () => {
       setIsOnWidgetPage(isOnWidgetPage);
     });
 
-    chrome.storage.local.get(storageKey).then((storage) => {
-      const currentTheme: StorageItem = storage[storageKey];
+    chrome.storage.local.get(storageKey).then((storage: Record<string, unknown>) => {
+      const currentTheme: StorageItem = storage[storageKey] as StorageItem;
       if (currentTheme && currentTheme.active) {
         setTheme(currentTheme.name);
       }
