@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { StorageItem, storageKey } from "@/utils/storage";
+import { getFontSizeItem, StorageItem, storageKey } from "@/utils/storage";
+import { DEFAULT_FONT_SIZE } from "@/utils/styles";
 import {
+  changeFontSize,
   enableTheme,
   getCurrentTab,
   isOnWidgetEditorPage,
@@ -32,6 +34,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import SettingsMenu from "@/components/settings";
+import { FontSizeControl } from "@/components/font-size-control";
 import { ApplyButton } from "./components/apply-button";
 
 export const App: React.FC = () => {
@@ -39,6 +42,7 @@ export const App: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [isOnWidgetPage, setIsOnWidgetPage] = useState<boolean>(false);
   const [hasPermission, setHasPermission] = useState<boolean>(true);
+  const [fontSize, setFontSize] = useState<number>(DEFAULT_FONT_SIZE);
 
   function themeChange(t: string) {
     setTheme(t);
@@ -69,6 +73,12 @@ export const App: React.FC = () => {
     e.preventDefault();
     await removeTheme();
     setTheme("");
+    setFontSize(DEFAULT_FONT_SIZE);
+  }
+
+  async function handleFontSizeChange(next: number) {
+    // O valor exibido acompanha o que a extensão de fato gravou, já clampado.
+    setFontSize(await changeFontSize(next));
   }
 
   async function handleGrantAccess(e: React.MouseEvent) {
@@ -92,6 +102,10 @@ export const App: React.FC = () => {
     getCurrentTab().then((tab) =>
       hasHostPermission(tab.url).then(setHasPermission)
     );
+
+    getFontSizeItem().then((stored) => {
+      if (stored !== null) setFontSize(stored);
+    });
 
     chrome.storage.local.get(storageKey).then((storage: Record<string, unknown>) => {
       const currentTheme: StorageItem = storage[storageKey] as StorageItem;
@@ -142,6 +156,8 @@ export const App: React.FC = () => {
               <SelectItem value="omni-owl">Omni Owl</SelectItem>
             </SelectContent>
           </Select>
+
+          <FontSizeControl value={fontSize} onChange={handleFontSizeChange} />
 
           {isOnWidgetPage && !hasPermission && (
             <div className="mt-4 rounded-md border border-border bg-muted/50 p-3">
