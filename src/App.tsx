@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import { clearStorage, StorageItem, storageKey } from "@/utils/storage";
+import { StorageItem, storageKey } from "@/utils/storage";
 import {
   enableTheme,
   getCurrentTab,
   isOnWidgetEditorPage,
-  removeCurrentTheme,
+  removeTheme,
 } from "@/utils/extension";
 import { hasHostPermission, requestHostPermission } from "@/utils/permissions";
 
@@ -67,8 +67,7 @@ export const App: React.FC = () => {
 
   async function handleRevert(e: React.MouseEvent) {
     e.preventDefault();
-    await removeCurrentTheme();
-    await clearStorage();
+    await removeTheme();
     setTheme("");
   }
 

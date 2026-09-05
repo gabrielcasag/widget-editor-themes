@@ -1,13 +1,10 @@
 import { getStorageItem } from "./utils/storage";
-
-function isOnWidgetEditorPage(url?: string) {
-  return url ? url.includes("id=widget_editor") : false;
-}
+import { getWidgetEditorTabs, isWidgetEditorUrl } from "./utils/tabs";
 
 async function applyStoredTheme(tab?: chrome.tabs.Tab) {
   // Sem host permission para a aba o Chrome esconde a URL, então um `url`
   // ausente já significa que a injeção também não seria permitida.
-  if (!tab || tab.id === undefined || !isOnWidgetEditorPage(tab.url)) return;
+  if (!tab || tab.id === undefined || !isWidgetEditorUrl(tab.url)) return;
 
   const currentTheme = await getStorageItem();
 
@@ -32,7 +29,7 @@ async function applyStoredTheme(tab?: chrome.tabs.Tab) {
 }
 
 async function applyStoredThemeToAllTabs() {
-  const tabs = await chrome.tabs.query({});
+  const tabs = await getWidgetEditorTabs();
 
   await Promise.all(tabs.map((tab) => applyStoredTheme(tab)));
 }
