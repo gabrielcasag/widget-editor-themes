@@ -22,7 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     // shadcn/ui
-    "baseUrl": ".",
+    "types": ["chrome", "node"],
     "paths": {
       "@/*": [
         "./src/*"
