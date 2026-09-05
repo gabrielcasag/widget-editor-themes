@@ -8,6 +8,7 @@ import {
 } from "./storage";
 import { getCurrentTab, getWidgetEditorTabs, isWidgetEditorUrl } from "./tabs";
 import { clampFontSize, fontSizeCss, themeFiles } from "./styles";
+import { refreshCodeMirror } from "./code-mirror";
 
 type Injection = { files: string[] } | { css: string };
 
@@ -36,13 +37,17 @@ async function swapCssOnOpenTabs(
         }
       }
 
-      if (!next) return;
-
-      try {
-        await chrome.scripting.insertCSS({ ...next, target });
-      } catch (error) {
-        console.debug("Widget Editor Themes: css injection failed", error);
+      if (next) {
+        try {
+          await chrome.scripting.insertCSS({ ...next, target });
+        } catch (error) {
+          console.debug("Widget Editor Themes: css injection failed", error);
+        }
       }
+
+      // Vale tanto para inserir quanto para remover: os dois mudam as métricas
+      // que o editor tem em cache.
+      await refreshCodeMirror(target.tabId);
     })
   );
 }

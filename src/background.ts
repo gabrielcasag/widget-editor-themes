@@ -1,6 +1,7 @@
 import { getFontSizeItem, getStorageItem } from "./utils/storage";
 import { getWidgetEditorTabs, isWidgetEditorUrl } from "./utils/tabs";
 import { fontSizeCss, themeFiles } from "./utils/styles";
+import { refreshCodeMirror } from "./utils/code-mirror";
 
 type Injection = { files: string[] } | { css: string };
 
@@ -41,6 +42,8 @@ async function applyStoredStyles(tab?: chrome.tabs.Tab) {
       console.debug("Widget Editor Themes: css injection failed", error);
     }
   }
+
+  if (injections.length > 0) await refreshCodeMirror(tab.id);
 }
 
 async function applyStoredStylesToAllTabs() {
