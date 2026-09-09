@@ -138,6 +138,7 @@ export const App: React.FC = () => {
               <SelectItem value="catppuccin-mocha">Catppuccin Mocha</SelectItem>
               <SelectItem value="catppuccin-macchiato">Catppuccin Macchiato</SelectItem>
               <SelectItem value="dracula">Dracula</SelectItem>
+              <SelectItem value="night-owl">Night Owl</SelectItem>
               <SelectItem value="omni">Omni</SelectItem>
               <SelectItem value="omni-owl">Omni Owl</SelectItem>
             </SelectContent>
